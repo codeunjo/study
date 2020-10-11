@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+	<resultMap id="brdResult" type="boardVO">
+		<result property="board_no" column="board_no" />
+		<result property="title" column="title" />
+        <result property="write_dt" column="write_dt" />
+        <result property="write_id" column="write_id" />
+        <result property="contents" column="contens" />
+        <result property="hits" column="hits" />
+	</resultMap> 
+
+
+	<select id="selectAllBoardList" resultMap="brdResult">
+      <![CDATA[
+         select * from board order by write_dt desc	 	
+      ]]>
+	</select>
+
+	<select id="selectBoard" resultType="String">
+	    <![CDATA[
+		select name from board
+		board_no  = #{board_no}		
+	    ]]>
+	</select>
+	
+	
+     <insert id="insertBoard"  parameterType="boardVO">
+		<![CDATA[
+		 insert into board (board_no,title, write_dt, write_id, contents, hits)
+		 values(#{board_no}, #{title}, #{write_dt}, #{write_id}, #{contents}, #{hits})
+		]]>      
+	</insert>
+	
+	
+</mapper>
