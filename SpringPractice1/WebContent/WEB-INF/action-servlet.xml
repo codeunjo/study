@@ -26,7 +26,7 @@
          <ref local="boardMethodResolver"/>
       </property>
       <property name="boardService" ref="boardService"/>
-   </bean>
+   </bean> 
 
    <bean  id="boardrMethodResolver"
    class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver" >
