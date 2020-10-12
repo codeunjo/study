@@ -9,7 +9,7 @@
 		<result property="title" column="title" />
         <result property="write_dt" column="write_dt" />
         <result property="write_id" column="write_id" />
-        <result property="contents" column="contens" />
+        <result property="contents" column="contens" /> 
         <result property="hits" column="hits" />
 	</resultMap> 
 
