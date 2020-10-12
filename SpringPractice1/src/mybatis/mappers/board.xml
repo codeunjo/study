@@ -22,7 +22,7 @@
 
 	<select id="selectBoard" resultType="String">
 	    <![CDATA[
-		select name from board
+		select name from board 
 		board_no  = #{board_no}		
 	    ]]>
 	</select>
