@@ -18,8 +18,6 @@ public class BoardDAO implements DAO,BoardImple {
 	@Override
 	public List<BoardVO> selectAll() {
 	
-	
-	
 		return ss.selectList("selectAllBoard");
 
 	}
@@ -29,14 +27,14 @@ public class BoardDAO implements DAO,BoardImple {
 	@Override
 	public void insertOne(Object obj) {
 		
-	ss.insert("insertOneBoard", (BoardDTO) obj);
+	ss.insert("insertOneBoard", (BoardVO) obj);
 		
 	}
 	
 	@Override
 	public Object selectOne(int no) {
 		
-		return (BoardDTO)ss.selectOne("selectOneBoard", no);
+		return (BoardVO)ss.selectOne("selectOneBoard", no);
 	}
 	
 	
@@ -45,7 +43,7 @@ public class BoardDAO implements DAO,BoardImple {
 
 	@Override
 	public void updateOne(Object obj) {
-		ss.update("updateBoard", (BoardDTO) obj);
+		ss.update("updateBoard", (BoardVO) obj);
 		
 	}
 
@@ -56,26 +54,26 @@ public class BoardDAO implements DAO,BoardImple {
 	}
 
 	@Override
-	public List<BoardDTO> selectAllByCate(BoardDTO boardDTO) {
-		
-		
-		return ss.selectList("selectBoardByCate",boardDTO);
+	public List<BoardVO> selectAllByCate(BoardVO boardDTO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public List<BoardDTO> selectAllMyBoard(int no) {
-	
-		return ss.selectList("selectAllMyBoard", no);
+	public List<BoardVO> selectAllMyBoard(int no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void updateHits(int no) {
-		ss.update("updateHits", no);
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void updateNom(int no) {
-		ss.update("updateNom",no);
+		// TODO Auto-generated method stub
 		
 	}
 

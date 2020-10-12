@@ -4,20 +4,20 @@ package com.spring.board.controller;
 import java.io.IOException;
 import java.util.List;
 
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.HttpServletBean;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.board.dao.BoardImple;
+import com.spring.board.dao.DAO;
 import com.spring.board.vo.BoardVO;
 
 @Controller
-public class BoardControl {
+public class BoardController {
 	
 	
 	@Autowired
@@ -40,7 +40,7 @@ public class BoardControl {
 
 
 	@RequestMapping(value="/boardList")
-	public String list(HttpServletRequest req, Model model) {
+	public String list(HttpServletBean req, Model model) {
 		
 		String board_event = req.getParameter("board_event");
 		String board_category = req.getParameter("board_category");
@@ -54,9 +54,9 @@ public class BoardControl {
 		boardDTO.setBoard_event(event);
 		boardDTO.setBoard_category(category);
 		
-		List<BoardDTO> list = boardImple.selectAllByCate(boardDTO);
+		List<BoardVO> list = boardImple.selectAllByCate(boardDTO);
 		
-		for(BoardDTO dto : list) {
+		for(BoardVO dto : list) {
 			
 			dto.setBoard_date(dto.getBoard_date().substring(0, 16));
 			
@@ -86,31 +86,6 @@ public class BoardControl {
 	
 	
 	
-	@RequestMapping("/boardInsertOk")
-	public void processStep2(@ModelAttribute BoardDTO boardDTO,HttpServletRequest req,
-			HttpServletResponse resp,Model model) throws IOException {
-			
-			String u = req.getParameter("user_num");
-			String e = req.getParameter("board_event");
-			String c = req.getParameter("board_category");
-			
-			
-			int usernum = Integer.parseInt(u);
-			int event = Integer.parseInt(e);
-			int cate = Integer.parseInt(c);
-			
-			boardDTO.setUser_num(usernum);
-			boardDTO.setBoard_category(cate);
-			boardDTO.setBoard_event(event);
-		
-			boardDAO.insertOne(boardDTO);
-		
-			
-			resp.sendRedirect("/spring_project/boardList?board_event="+e+"&board_category="+c);
-			
-		}
-		
-		
 
 	//게시물 디테일보기
 	@RequestMapping("/boardDetail")
